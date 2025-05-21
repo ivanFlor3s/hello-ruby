@@ -2,7 +2,7 @@ require 'telegram/bot'
 require 'sequel'
 
 
-TOKEN = '7582061275:AAEdFvWar_wgKxYcciCAyv50d_o7-CoJYws'
+TOKEN = 'is secret'
 
 # Telegram::Bot::Client.run(TOKEN) do |bot|
 #   bot.listen do |message|
