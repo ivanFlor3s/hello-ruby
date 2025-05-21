@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  app:
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DATABASE_STRING_CONNECTION=postgres://${DATABASE_ADMIN_USER_NAME}:${DATABASE_ADMIN_USER_PASSWORD}@db:5432/${DATABASE_NAME}
+    networks:
+      - app-network
+  db:
+    image: postgres:15-alpine
+    ports:
+      - "5433:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=${DATABASE_ADMIN_USER_NAME}
+      - POSTGRES_PASSWORD=${DATABASE_ADMIN_USER_PASSWORD}
+      - POSTGRES_DB=${DATABASE_NAME}
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
+volumes:
+  db-data:
+    

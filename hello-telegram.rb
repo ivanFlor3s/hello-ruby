@@ -1,5 +1,5 @@
 require 'telegram/bot'
-require_relative 'handler/images/deus'
+require 'sequel'
 
 
 TOKEN = '7582061275:AAEdFvWar_wgKxYcciCAyv50d_o7-CoJYws'
@@ -21,6 +21,11 @@ TOKEN = '7582061275:AAEdFvWar_wgKxYcciCAyv50d_o7-CoJYws'
 # end
 
 
-reader = TextReader.new('resources/deus.txt')
-byebug
-reader.read_text
+# reader = TextReader.new('resources/deus.txt')
+# byebug
+# reader.read_text
+
+url = ENV['DATABASE_STRING_CONNECTION'] || 'None'
+puts "Connecting to: #{url.inspect}"
+DB = Sequel.connect(url)
+puts "Database connected successfully"
